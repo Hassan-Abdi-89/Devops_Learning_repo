@@ -23,9 +23,12 @@ Instance has a Public IPv4 address
 
 A public IP is required for internet and Cloudflare access. Without it, the site cannot be reached.
 Pulic ip address on the Instance is 182.226.96.232
-![](2026-01-22-20-16-00.png)
 
 ![](2026-01-22-20-22-24.png)
+
+Inbound rule created to allow htp and https:
+
+![](2026-01-23-02-02-17.png)
 
 # # SSH into EC2
 ssh -i devops-keypair.pem ec2-user@18.226.96.232
@@ -116,6 +119,8 @@ Below image shows the domain working :
 Root Causes Identified :
     1.Missing or incorrect public IP
     2.DNS pointing to wrong IP
+
+    
 
 
 
