@@ -34,15 +34,19 @@ An inbound rule created to allow HTTP and HTTPS:
 ssh -i devops-keypair.pem ec2-user@18.226.96.232
 
 # # Install NGINX
+
+```
 sudo yum update -y
 sudo yum install -y nginx
+```
 
 # # Enable and start NGINX
+
+```
 sudo systemctl enable nginx
 sudo systemctl start nginx
 systemctl status nginx
-
-
+```
 After running the commands, this is the output you will get :
 
 
