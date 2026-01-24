@@ -22,11 +22,11 @@ EC2 instance is running
 Instance has a Public IPv4 address
 
 A public IP is required for internet and Cloudflare access. Without it, the site cannot be reached.
-Pulic ip address on the Instance is 182.226.96.232
+Public ip address on the Instance is 182.226.96.232
 
 ![](2026-01-22-20-22-24.png)
 
-Inbound rule created to allow htp and https:
+An inbound rule created to allow HTTP and HTTPS:
 
 ![](2026-01-23-02-02-17.png)
 
@@ -43,14 +43,15 @@ sudo systemctl start nginx
 systemctl status nginx
 
 
-After running the commands this is the out put you will get :
+After running the commands, this is the output you will get :
 
 
+```
 Jan 23 01:45:19 ip-172-31-1-190.us-east-2.compute.internal systemd[1]: Starting nginx service - The nginx HTTP and reverse proxy server...
 Jan 23 01:45:19 ip-172-31-1-190.us-east-2.compute.internal nginx[26639]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 Jan 23 01:45:19 ip-172-31-1-190.us-east-2.compute.internal nginx[26639]: nginx: configuration file /etc/nginx/nginx.conf test is successful
 Jan 23 01:45:19 ip-172-31-1-190.us-east-2.compute.internal systemd[1]: Started nginx.service - The nginx HTTP and reverse proxy server.
-
+```
 
 This confirms:
 
@@ -59,15 +60,17 @@ Config file is valid
 systemd is managing the service
 No errors
 
-Open a browser on your local machine and visit http://your_EC2_ip(172.78.98.10) 
+Open a browser on your local machine and visit http://your_EC2_ip(18.226.96.232) 
+
 **Welcome to nginx!**
 
 ![](2026-01-22-21-09-12.png)
 
-If you see that page — you’re done with the EC2.
+If you see that page, EC2 IS up and running.
 
 Configuration file location 
 
+```
 server {
 listen 80;
 server_name ahssan.org www.ahssan.org;
@@ -81,8 +84,8 @@ location / {
 try_files $uri $uri/ =404;
 }
 }
-
-This configuration on nginx its astandard Virtual Host configuration that maps public DNS queries for ahssan.org to the local directory /var/www/html, using a fail-safe try_files directive to prevent directory listing and ensure proper 404 error handling.
+```
+This configuration on nginx its a standard Virtual Host configuration that maps public DNS queries for ahssan.org to the local directory /var/www/html, using a fail-safe try_files directive to prevent directory listing and ensure proper 404 error handling.
 
 
 
