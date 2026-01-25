@@ -95,7 +95,7 @@ This configuration on nginx its a standard Virtual Host configuration that maps 
 
 # # Configure DNS
 
-Log into Cloudflare and select your domain.
+Log in to Cloudflare and select your domain.
 
 Go to the DNS settings tab and click Add Record.
 
@@ -107,25 +107,44 @@ Name: @ (for your main domain) or www (for a subdomain).
 
 IPv4 address: Paste your AWS Public IP.
 
-click save .
+Click save.
 
 
 ![](2026-01-22-21-33-29.png)
 
-The domain I registered is ahssan.org. Whenever I type ahssan.org into the browser its redirected back to my server which we launched eralier.
+The domain I registered is ahssan.org. Whenever I type ahssan.org into the browser, it's redirected back to the server we launched earlier.
 
-Below image shows the domain working :
+The image shows the domain working :
 
 ![](2026-01-23-01-47-51.png)
 
 
 # # Troubleshooting Performed
 
+Challenge: Unable to access the NGINX page from the browser
+
+Solution: Verified that port 80 was open in the security group and confirmed NGINX was running.
+
+
 522 / "Site can’t be reached" errors
 
 Root Causes Identified :
-    1.Missing or incorrect public IP
-    2.DNS pointing to wrong IP
+
+    1. Missing or incorrect public IP
+    
+    2. DNS pointing to the wrong IP
+
+Cloudflare Proxying: Ensure that Cloudflare IPs are allowed in the AWS Security Group to avoid blocking legitimate traffic.
+
+## Lessons Learned
+
+How to provision and manage EC2 instances
+
+The role of security groups in AWS networking
+
+Installing and managing services using systemd
+
+How HTTP traffic flows from the internet to an EC2 instance
 
     
 
