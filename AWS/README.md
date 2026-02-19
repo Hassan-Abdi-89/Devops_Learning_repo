@@ -17,3 +17,7 @@ Click Create NAT Gateway
 Launching EC2 in the public subnet
 
 ![ssh working ](image-5.png)
+
+
+Launch EC2 in the Private Subnet 
+![Creatin security group](image-6.png)
