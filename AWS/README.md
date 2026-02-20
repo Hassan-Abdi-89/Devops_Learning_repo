@@ -21,3 +21,5 @@ Launching EC2 in the public subnet
 
 Launch EC2 in the Private Subnet 
 ![Creatin security group](image-6.png)
+To see if the instance we log in through ssh as you can see its only accessible through the public instance .
+![Private EC2 LOG IN](image-7.png)
