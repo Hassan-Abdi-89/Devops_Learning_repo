@@ -29,7 +29,7 @@ AWS 2-Tier Architecture Lab (Public & Private Subnet)
 This lab demonstrates how to build a secure 2-tier AWS architecture using a custom VPC. The environment includes a public subnet for internet-facing resources and a private subnet for secure internal instances. The goal was to understand VPC networking, routing, NAT Gateway functionality, and secure SSH access using a bastion host pattern.
 
 🔹 Step-by-Step Walkthrough
-1  Created Custom VPC
+1.  **Created Custom VPC
 
 CIDR block: 10.0.0.0/16
 
@@ -39,7 +39,7 @@ DNS resolution enabled
 This provides a large IP range that can be subdivided into smaller subnets.
 ![Created VPC](image-1.png)
 
-2  Created Subnets
+2.  C**reated Subnets
 
 Public Subnet → 10.0.0.0/24
 
@@ -52,7 +52,7 @@ Public subnet was configured to auto-assign public IP addresses.
 
 ![Public subnet](image-3.png)
 
-3  Configured Internet Access
+3.  **Configured Internet Access
 Internet Gateway (IGW)
 
 Created and attached to the VPC
@@ -76,7 +76,7 @@ Elastic IP: Select the one you just created
 Click Create NAT Gateway
 
 
-4  Security Groups Configuration
+4.  **Security Groups Configuration
 Public EC2 Security Group
 
 Inbound:
@@ -118,8 +118,11 @@ To see if the instance is working we log in through ssh as you can see its only 
 Testing & Validation
 
 ✔ Successfully SSH’d into Public EC2
+
 ✔ Successfully SSH’d from Public EC2 to Private EC2
+
 ✔ Verified Private EC2 outbound internet access via NAT Gateway using:
+
 ```
 curl google.com
 ```
