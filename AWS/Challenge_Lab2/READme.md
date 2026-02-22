@@ -1,0 +1,8 @@
+![VPC setup ](image-1.png)
+![Healthy Alb](image-2.png)
+![Web server 1 working](image-3.png)
+![Web server 2 working](image-4.png)
+![Requesting Acm Certificate](image-5.png)
+![Adding CNAME to Cloufflare](image-6.png)
+![ALB new listener with a certicate](image-7.png)
+![Domain working](image-8.png)
