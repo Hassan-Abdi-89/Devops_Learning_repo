@@ -1,4 +1,4 @@
-# # Production-Ready AWS Web Architecture
+# #  Production-Ready AWS Web Architecture
 ALB + HTTPS (ACM) +  Cloudflare DNS
 Description
 
@@ -7,6 +7,9 @@ This project demonstrates a highly available, secure, and scalable AWS web archi
 The infrastructure uses a custom VPC, multi-AZ deployment, Application Load Balancer, HTTPS via AWS Certificate Manager, Cloudflare DNS integration.
 
 This setup mirrors real-world production DevOps patterns used in modern cloud environments.
+
+![Project Diagram](image-10.png)
+
 
 ## Features
 
