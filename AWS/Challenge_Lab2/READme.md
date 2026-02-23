@@ -134,3 +134,16 @@ EC2 SG: Allow HTTP only from ALB SG
 No direct public EC2 access
 
 HTTPS enforced
+
+## Troubleshooting Log
+Issue: 502 Bad Gateway.
+
+Cause: Apache (httpd) didn't start because the instance lacked internet access to download the package during the first boot.
+
+Fix: Verified Route Table associations and ensured the User Data script was correct.
+
+Issue: Unhealthy Targets in ALB.
+
+Cause: Security Group on EC2 was blocking the ALB's health check probes.
+
+Fix: Updated EC2 SG to allow all traffic originating from the ALB SG.
