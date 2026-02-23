@@ -8,7 +8,7 @@ The infrastructure uses a custom VPC, multi-AZ deployment, Application Load Bala
 
 This setup mirrors real-world production DevOps patterns used in modern cloud environments.
 
-![Project Diagram](image-10.png)
+![Project diagram](image-11.png)
 
 
 ## Features
