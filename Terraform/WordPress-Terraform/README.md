@@ -1,0 +1,1 @@
+![Terraform init and validate](image.png)
