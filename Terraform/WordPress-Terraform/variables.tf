@@ -8,5 +8,5 @@ variable "key_name"{
     description = "SSH key pair name"
 }
 variable "allowed_ip"{
-    description = ""
+    description = "your IP for SSH"
 }
