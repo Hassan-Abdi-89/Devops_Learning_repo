@@ -4,3 +4,4 @@
 ![Terraform plan error](image-4.png)
 ![Terraform apply running](image-5.png)
 Ec2 up running smoothly
+![EC2 Running](image-6.png)
