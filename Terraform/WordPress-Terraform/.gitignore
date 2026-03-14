@@ -1,0 +1,27 @@
+# Local Terraform directories
+.terraform/
+.terraform.lock.hcl
+
+# Terraform state files and backups
+*.tfstate
+*.tfstate.*.backup
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Files containing sensitive data or environment-specific variables
+*.tfvars
+*.tfvars.json
+secrets.auto.tfvars
+
+# Terraform override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Other potential local files
+.vscode/
+.idea/
+
