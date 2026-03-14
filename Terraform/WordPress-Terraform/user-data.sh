@@ -1,18 +1,16 @@
 #!/bin/bash
-set -o pipefail
 exec > /var/log/user-data.log 2>&1
 
 echo "=== Starting WordPress bootstrap ==="
 
-# ── 1. Update ─────────────────────────────────────────────────────────────────
+# ── 1. Update package list only (no upgrade — it hangs in user_data) ──────────
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
-apt-get upgrade -y
 
-echo "=== System updated ==="
+echo "=== Package list updated ==="
 
-# ── 2. Install Apache, PHP, and MariaDB ───────────────────────────────────────
-apt-get install -y \
+# ── 2. Install everything in one command ──────────────────────────────────────
+apt-get install -y --fix-missing \
   apache2 \
   php \
   php-mysql \
@@ -26,30 +24,41 @@ apt-get install -y \
 
 echo "=== Packages installed ==="
 
-# ── 3. Start and enable services ──────────────────────────────────────────────
+# ── 3. Start services ─────────────────────────────────────────────────────────
 systemctl enable --now apache2
 systemctl enable --now mariadb
 
 echo "=== Services started ==="
 
-# ── 4. Download WordPress ─────────────────────────────────────────────────────
-cd /tmp
-wget -q https://wordpress.org/latest.tar.gz
-tar -xzf latest.tar.gz
-cp -r wordpress/* /var/www/html/
-rm -rf wordpress latest.tar.gz
+# ── 4. Verify Apache is up before copying files ───────────────────────────────
+sleep 5
+systemctl is-active apache2 || { echo "Apache failed to start"; exit 1; }
 
-# Remove default Apache page
+echo "=== Apache confirmed running ==="
+
+# ── 5. Download WordPress ─────────────────────────────────────────────────────
+cd /tmp
+wget https://wordpress.org/latest.tar.gz
+tar -xzf latest.tar.gz
+
+# Confirm extraction worked before copying
+if [ ! -d "/tmp/wordpress" ]; then
+  echo "WordPress extraction failed"
+  exit 1
+fi
+
+cp -r /tmp/wordpress/* /var/www/html/
 rm -f /var/www/html/index.html
+rm -rf /tmp/wordpress /tmp/latest.tar.gz
 
 echo "=== WordPress downloaded ==="
 
-# ── 5. Permissions ────────────────────────────────────────────────────────────
+# ── 6. Permissions ────────────────────────────────────────────────────────────
 chown -R www-data:www-data /var/www/html/
 find /var/www/html/ -type d -exec chmod 755 {} \;
 find /var/www/html/ -type f -exec chmod 644 {} \;
 
-# ── 6. Enable Apache mod_rewrite (needed for WordPress permalinks) ─────────────
+# ── 7. Enable mod_rewrite and restart ─────────────────────────────────────────
 a2enmod rewrite
 systemctl restart apache2
 
