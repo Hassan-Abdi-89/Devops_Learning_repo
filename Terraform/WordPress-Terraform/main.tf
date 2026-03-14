@@ -47,6 +47,9 @@ resource "aws_instance" "wordpress" {
   instance_type = var.instance_type
   key_name = var.key_name
   vpc_security_group_ids =  [aws_security_group.wordpress_sg.id]
+
+  associate_public_ip_address = true
+  
   user_data = file("user-data.sh")
   tags = {
     Name = "wordpress-server"
