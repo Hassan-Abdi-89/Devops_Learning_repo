@@ -43,10 +43,10 @@ resource "aws_security_group" "wordpress_sg" {
 }
 #EC2 Instance
 resource "aws_instance" "wordpress" {
-  ami = data.aws_ami.amazon_linux
+  ami = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
   key_name = var.key_name
-  security_groups = [aws_security_group.wordpress_sg]
+  security_groups = [aws_security_group.wordpress_sg.id]
   user_data = file("user-data.sh")
   tags = {
     Name = "wordpress-server"
