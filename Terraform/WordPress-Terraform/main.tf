@@ -55,8 +55,9 @@ resource "aws_instance" "wordpress" {
 
   associate_public_ip_address = true
 
-  user_data = file("user-data.sh")
-  tags = {
+  user_data = file ("cloud-init.yaml")
+  user_data_replace_on_change = true
+    tags = {
     Name = "wordpress-server"
   }
 }
