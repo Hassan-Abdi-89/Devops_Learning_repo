@@ -7,4 +7,5 @@ Ec2 up running smoothly
 ![EC2 Running](image-6.png)
 ![Wordpress working](image-7.png)
 ![Run installation](image-8.png)
+![database and Apache server running](image-10.png)
 ![Wordpress admin page](image-9.png)
