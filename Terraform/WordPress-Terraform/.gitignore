@@ -25,3 +25,9 @@ override.tf.json
 .vscode/
 .idea/
 
+# Terraform working directory — never commit these
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+terraform.tfvars
