@@ -10,7 +10,6 @@
 - [Terraform Code Structure](#terraform-code-structure)
 - [What I Learned](#what-i-learned)
 - [Issues Hit and How I Fixed Them](#issues-hit-and-how-i-fixed-them)
-- [How to Deploy](#how-to-deploy)
  
 ---
  
