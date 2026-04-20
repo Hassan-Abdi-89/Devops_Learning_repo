@@ -1,0 +1,47 @@
+#cloud-config
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - apache2
+  - php
+  - php-mysql
+  - php-curl
+  - php-json
+  - php-xml
+  - php-mbstring
+  - mariadb-server
+  - wget
+  - curl
+
+runcmd:
+  # Start services
+  - systemctl enable --now apache2
+  - systemctl enable --now mariadb
+
+  # Create database and user
+  - mysql -u root -e "CREATE DATABASE IF NOT EXISTS wordpress;"
+  - mysql -u root -e "CREATE USER IF NOT EXISTS 'wpuser'@'localhost' IDENTIFIED BY 'YourPasswordHere';"
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wpuser'@'localhost';"
+  - mysql -u root -e "FLUSH PRIVILEGES;"
+
+  # Download WordPress
+  - wget -q https://wordpress.org/latest.tar.gz -P /tmp
+  - tar -xzf /tmp/latest.tar.gz -C /tmp
+  - cp -r /tmp/wordpress/* /var/www/html/
+  - rm -f /var/www/html/index.html
+  - rm -rf /tmp/wordpress /tmp/latest.tar.gz
+
+  # Permissions
+  - chown -R www-data:www-data /var/www/html/
+  - find /var/www/html/ -type d -exec chmod 755 {} \;
+  - find /var/www/html/ -type f -exec chmod 644 {} \;
+
+  # Enable mod_rewrite for WordPress permalinks
+  - a2enmod rewrite
+  - systemctl restart apache2
+
+final_message: |
+  WordPress bootstrap complete after $UPTIME seconds.
+  Visit http://YOUR_PUBLIC_IP to complete WordPress setup.
